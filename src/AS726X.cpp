@@ -128,20 +128,13 @@ void AS726X::takeMeasurementsWithBulb()
 }
 
 //Get the various color readings
-int AS726X::getViolet() { return(getChannel(AS7262_V)); }
-int AS726X::getBlue() { return(getChannel(AS7262_B)); }
-int AS726X::getGreen() { return(getChannel(AS7262_G)); }
-int AS726X::getYellow() { return(getChannel(AS7262_Y)); }
-int AS726X::getOrange() { return(getChannel(AS7262_O)); }
-int AS726X::getRed() { return(getChannel(AS7262_R)); }
+int AS726X::getX() { return(getChannel(AS7261_X)); }
+int AS726X::getY() { return(getChannel(AS7261_Y)); }
+int AS726X::getZ() { return(getChannel(AS7261_Z)); }
+int AS726X::getNIR() { return(getChannel(AS7261_NIR)); }
+int AS726X::getDark() { return(getChannel(AS7261_Dark)); }
+int AS726X::getClear() { return(getChannel(AS7261_Clear)); }
 
-//Get the various NIR readings
-int AS726X::getR() { return(getChannel(AS7263_R)); }
-int AS726X::getS() { return(getChannel(AS7263_S)); }
-int AS726X::getT() { return(getChannel(AS7263_T)); }
-int AS726X::getU() { return(getChannel(AS7263_U)); }
-int AS726X::getV() { return(getChannel(AS7263_V)); }
-int AS726X::getW() { return(getChannel(AS7263_W)); }
 
 //A the 16-bit value stored in a given channel registerReturns 
 int AS726X::getChannel(uint8_t channelRegister)
@@ -152,19 +145,13 @@ int AS726X::getChannel(uint8_t channelRegister)
 }
 
 //Returns the various calibration data
-float AS726X::getCalibratedViolet() { return(getCalibratedValue(AS7262_V_CAL)); }
-float AS726X::getCalibratedBlue() { return(getCalibratedValue(AS7262_B_CAL)); }
-float AS726X::getCalibratedGreen() { return(getCalibratedValue(AS7262_G_CAL)); }
-float AS726X::getCalibratedYellow() { return(getCalibratedValue(AS7262_Y_CAL)); }
-float AS726X::getCalibratedOrange() { return(getCalibratedValue(AS7262_O_CAL)); }
-float AS726X::getCalibratedRed() { return(getCalibratedValue(AS7262_R_CAL)); }
+float AS726X::getCalibratedX() { return(getCalibratedValue(AS7261_X_CAL)); }
+float AS726X::getCalibratedY() { return(getCalibratedValue(AS7261_Y_CAL)); }
+float AS726X::getCalibratedZ() { return(getCalibratedValue(AS7261_Z_CAL)); }
+float AS726X::getCalibratedNIR() { return(getCalibratedValue(AS7261_NIR_CAL)); }
+float AS726X::getCalibratedDark() { return(getCalibratedValue(AS7261_Dark_CAL)); }
+float AS726X::getCalibratedClear() { return(getCalibratedValue(AS7261_Clear_CAL)); }
 
-float AS726X::getCalibratedR() { return(getCalibratedValue(AS7263_R_CAL)); }
-float AS726X::getCalibratedS() { return(getCalibratedValue(AS7263_S_CAL)); }
-float AS726X::getCalibratedT() { return(getCalibratedValue(AS7263_T_CAL)); }
-float AS726X::getCalibratedU() { return(getCalibratedValue(AS7263_U_CAL)); }
-float AS726X::getCalibratedV() { return(getCalibratedValue(AS7263_V_CAL)); }
-float AS726X::getCalibratedW() { return(getCalibratedValue(AS7263_W_CAL)); }
 
 //Given an address, read four uint8_ts and return the floating point calibrated value
 float AS726X::getCalibratedValue(uint8_t calAddress)
