@@ -42,35 +42,21 @@
   void disableInterrupt();
 
   //Get the various color readings
-  int getViolet();
-  int getBlue();
-  int getGreen();
-  int getYellow();
-  int getOrange();
-  int getRed();
-
-  //Get the various NIR readings
-  int getR();
-  int getS();
-  int getT();
-  int getU();
-  int getV();
-  int getW();
+  int getX();
+  int getY();
+  int getZ();
+  int getNIR();
+  int getDark();
+  int getClear();
 
   //Returns the various calibration data
-  float getCalibratedViolet();
-  float getCalibratedBlue();
-  float getCalibratedGreen();
-  float getCalibratedYellow();
-  float getCalibratedOrange();
-  float getCalibratedRed();
+  float getCalibratedX();
+  float getCalibratedY();
+  float getCalibratedZ();
+  float getCalibratedNIR();
+  float getCalibratedDark();
+  float getCalibratedClear();
 
-  float getCalibratedR();
-  float getCalibratedS();
-  float getCalibratedT();
-  float getCalibratedU();
-  float getCalibratedV();
-  float getCalibratedW();
 */
 
 #include "AS726X.h"
@@ -87,41 +73,24 @@ void setup() {
 void loop() {
   sensor.takeMeasurements();
   //Prints all measurements
-  if (sensor.getVersion() == SENSORTYPE_AS7262)
-  {
+  
     //Visible readings
     Serial.print(" Reading: V[");
-    Serial.print(sensor.getCalibratedViolet(), 2);
+    Serial.print(sensor.getCalibratedX(), 2);
     Serial.print("] B[");
-    Serial.print(sensor.getCalibratedBlue(), 2);
+    Serial.print(sensor.getCalibratedY(), 2);
     Serial.print("] G[");
-    Serial.print(sensor.getCalibratedGreen(), 2);
+    Serial.print(sensor.getCalibratedZ(), 2);
     Serial.print("] Y[");
-    Serial.print(sensor.getCalibratedYellow(), 2);
+    Serial.print(sensor.getCalibratedNIR(), 2);
     Serial.print("] O[");
-    Serial.print(sensor.getCalibratedOrange(), 2);
+    Serial.print(sensor.getCalibratedDark(), 2);
     Serial.print("] R[");
-    Serial.print(sensor.getCalibratedRed(), 2);
-  }
-  else if (sensor.getVersion() == SENSORTYPE_AS7263)
-  {
-    //Near IR readings
-    Serial.print(" Reading: R[");
-    Serial.print(sensor.getCalibratedR(), 2);
-    Serial.print("] S[");
-    Serial.print(sensor.getCalibratedS(), 2);
-    Serial.print("] T[");
-    Serial.print(sensor.getCalibratedT(), 2);
-    Serial.print("] U[");
-    Serial.print(sensor.getCalibratedU(), 2);
-    Serial.print("] V[");
-    Serial.print(sensor.getCalibratedV(), 2);
-    Serial.print("] W[");
-    Serial.print(sensor.getCalibratedW(), 2);
-  }
+    Serial.print(sensor.getCalibratedClear(), 2);
+  
 
-  Serial.print("] tempF[");
-  Serial.print(sensor.getTemperatureF(), 1);
+  Serial.print("] tempC[");
+  Serial.print(sensor.getTemperature(), 1);
   Serial.print("]");
 
   Serial.println();
