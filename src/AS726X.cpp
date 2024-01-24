@@ -12,7 +12,7 @@ bool AS726X::begin(TwoWire &wirePort, uint8_t gain, uint8_t measurementMode)
 {
 	_i2cPort = &wirePort;
 	_sensorVersion = virtualReadRegister(AS726x_HW_VERSION);
-	if (_sensorVersion != 0x3E && _sensorVersion != 0x3F) //HW version for AS7262 and AS7263
+	if (_sensorVersion != 0x3D &&_sensorVersion != 0x3E && _sensorVersion != 0x3F) //HW version for AS7262 and AS7263
 	{
 		return false;
 	}
