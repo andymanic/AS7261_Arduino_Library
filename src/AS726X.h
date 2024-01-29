@@ -45,14 +45,24 @@ public:
 	float getCalibratedX();
 	float getCalibratedY();
 	float getCalibratedZ();
-	float getCalibratedNIR();
-	float getCalibratedDark();
-	float getCalibratedClear();
+	float getCalibratedx1931();
+	float getCalibratedy1931();
+	float getCalibratedupri();
+	float getCalibratedvpri();
+	float getCalibratedu();
+	float getCalibratedv();
+	float getCalibratedDUV();
+	int getCalibratedLUX();
+	int getCalibratedCCT();
+
+
+
 
 private:
 	TwoWire *_i2cPort;
 	int getChannel(uint8_t channelRegister);
 	float getCalibratedValue(uint8_t calAddress);
+	int getCalibratedIntValue(uint8_t calAddress);
 	float convertBytesToFloat(uint32_t myLong);
 	void clearDataAvailable();
 	uint8_t virtualReadRegister(uint8_t virtualAddr);
@@ -86,9 +96,15 @@ private:
 #define AS7261_X_CAL 0x14
 #define AS7261_Y_CAL 0x18
 #define AS7261_Z_CAL 0x1C
-#define AS7261_NIR_CAL 0x20
-#define AS7261_Dark_CAL 0x24
-#define AS7261_Clear_CAL 0x28
+#define AS7261_x_1931_CAL 0x20
+#define AS7261_y_1931_CAL 0x24
+#define AS7261_upri_CAL 0x28
+#define AS7261_vpri_CAL 0x2C
+#define AS7261_u_CAL 0x30
+#define AS7261_v_CAL 0x34
+#define AS7261_DUV_CAL 0x38
+#define AS7261_LUX_CAL 0x3C
+#define AS7261_CCT_CAL 0x40
 
 
 

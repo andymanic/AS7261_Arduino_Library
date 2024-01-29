@@ -148,9 +148,15 @@ int AS726X::getChannel(uint8_t channelRegister)
 float AS726X::getCalibratedX() { return(getCalibratedValue(AS7261_X_CAL)); }
 float AS726X::getCalibratedY() { return(getCalibratedValue(AS7261_Y_CAL)); }
 float AS726X::getCalibratedZ() { return(getCalibratedValue(AS7261_Z_CAL)); }
-float AS726X::getCalibratedNIR() { return(getCalibratedValue(AS7261_NIR_CAL)); }
-float AS726X::getCalibratedDark() { return(getCalibratedValue(AS7261_Dark_CAL)); }
-float AS726X::getCalibratedClear() { return(getCalibratedValue(AS7261_Clear_CAL)); }
+float AS726X::getCalibratedx1931() { return(getCalibratedValue(AS7261_x_1931_CAL)); }
+float AS726X::getCalibratedy1931() { return(getCalibratedValue(AS7261_y_1931_CAL)); }
+float AS726X::getCalibratedupri() { return(getCalibratedValue(AS7261_upri_CAL)); }
+float AS726X::getCalibratedvpri() { return(getCalibratedValue(AS7261_vpri_CAL)); }
+float AS726X::getCalibratedu() { return(getCalibratedValue(AS7261_u_CAL)); }
+float AS726X::getCalibratedv() { return(getCalibratedValue(AS7261_v_CAL)); }
+float AS726X::getCalibratedDUV() { return(getCalibratedValue(AS7261_DUV_CAL)); }
+int AS726X::getCalibratedLUX() { return(getCalibratedIntValue(AS7261_LUX_CAL)); }
+int AS726X::getCalibratedCCT() { return(getCalibratedIntValue(AS7261_CCT_CAL)); }
 
 
 //Given an address, read four uint8_ts and return the floating point calibrated value
@@ -170,6 +176,24 @@ float AS726X::getCalibratedValue(uint8_t calAddress)
 	calBytes |= ((uint32_t)b3 << (8 * 0));
 
 	return (convertBytesToFloat(calBytes));
+}
+
+int AS726X::getCalibratedIntValue (uint8_t calAddress)
+{
+	uint8_t b0, b1, b2, b3;
+	b0 = virtualReadRegister(calAddress + 0);
+	b1 = virtualReadRegister(calAddress + 1);
+	b2 = virtualReadRegister(calAddress + 2);
+	b3 = virtualReadRegister(calAddress + 3);
+
+	//Channel calibrated values are stored big-endian
+	uint32_t calBytes = 0;
+	calBytes |= ((uint32_t)b0 << (8 * 3));
+	calBytes |= ((uint32_t)b1 << (8 * 2));
+	calBytes |= ((uint32_t)b2 << (8 * 1));
+	calBytes |= ((uint32_t)b3 << (8 * 0));
+
+	return (calBytes);
 }
 
 //Given 4 uint8_ts returns the floating point value
